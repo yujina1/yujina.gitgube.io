@@ -1,0 +1,37 @@
+
+<script src="./js/vendor/jquery-1.12.4.min.js"></script>
+
+
+<script src="./js/jquery.bxslider.min.js"></script>
+<script>
+		//mode:'horizontal', 'vertical', 'fade'
+			$(document).ready(function() {
+				$('.slider').bxSlider({
+					mode:"vertical",//슬라이드 방향
+					auto:"true",//자동 실행됨
+					controls:"false",//prev,next버튼 노출여부
+					pager:"false",//현재 위치를 알려주는 블릿(아래 똥글이버튼)노출 여부
+					easing:"easeInOutElastic",//가속도
+					speed:3000//실행시간
+				});
+			});
+		</script>
+$(function () {
+	$('.slideshow').each(function() {//slideshow라는 class속성값을 갖는 요소를 찾은 다음에 {}안에 있는 코드를 적용해라
+		var $slides=$(this).find('img'),//모든 슬라이드
+		 	slideCount=$slides.length,//슬라이드의 갯수파악 slideCount==4
+		 	currentIndex=0;//현재 슬라이드를 나타내는 인덱스
+			$slides.eq(currentIndex).fadeIn();//첫번째 슬라이드를 페이드인해서 표시
+			//.slideshow img.eq(currentIndex==index[0]):첫번째 이미지  eq=~와같은
+
+		//setInterval(function() {},실행시간)
+		//setInterval(함수명,실행시간)
+		setInterval(showNextSlide,5000)	;
+		function showNextSlide() {
+			var nextIndex=(currentIndex+1)%slideCount; //0>1>2>3
+			$slides.eq(currentIndex).fadeOut();//현재 슬라이드는 페이드아웃으로 사라지고
+			$slides.eq(nextIndex).fadeIn();//다음 슬라이드는 페이드인으로 나타남.
+			currentIndex=nextIndex;//다음 슬라이드인덱스가 현재 표시된 인덱스로 저장
+		}
+	});
+});
