@@ -1,2 +1,2 @@
-# yujina.githube.io
+# yujina.github.io
 코딩
